@@ -2,36 +2,40 @@
     "manifest_version": 3,
     "name": "xify",
     "version": "1.0.0",
-    "description": "Modifies twitter links to vxtwitter.",
-    "permissions": ["clipboardWrite", "clipboardRead", "tabs", "activeTab"],
+    "description": "Modifies twitter links to vxtwitter on shortcut Ctrl+Alt+K and copies to clipboard.",
+    "permissions":["clipboardWrite", "clipboardRead", "tabs"],
     "content_scripts": [
       {
         "matches": ["*://twitter.com/*"],
         "js": ["src/copy.js"]
       }
     ],
-   "commands":{
+    "commands": {
       "modify-link": {
         "suggested_key": {
-          "default": "Ctrl+Shift+K",
-          "mac": "Command+Shift+K"
+          "default": "Ctrl+Alt+K",
+          "mac": "Command+Alt+K"
         },
-        "description": "Copy to clipboard"
+        "description": "Copy modified link to clipboard."
       }
     },
     "background": {
-      "service_worker": "src/background.js"
+      "scripts": ["src/background.js"]
     },
-    "externally_connectable":{
-      "ids":["*"],
-      "matches":["*://twitter.com/*"]
-    },
-    "icons":{
-      "16":"assets/icon16.png",
-      "32":"assets/icon32.png",
-      "48":"assets/icon48.png",
-      "128":"assets/icon128.png"
-    }
-    
-  }
-  
+    "host_permissions": [
+      "*://twitter.com/*"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "xify-firefox-extension@thevenuz"
+        }
+      },
+      
+      "icons":{
+        "16":"assets/icon16.png",
+        "32":"assets/icon32.png",
+        "48":"assets/icon48.png",
+        "128":"assets/icon128.png"
+      },
+      "incognito":"spanning"      
+}
