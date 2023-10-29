@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "xify",
     "version": "1.0.0",
-    "description": "Modifies twitter links to vxtwitter.",
+    "description": "A chrome extension that modifies twitter links to vxtwitter on shortcut Ctrl+Shift+K and copies to clipboard.",
     "permissions": ["clipboardWrite", "clipboardRead", "tabs", "activeTab"],
     "content_scripts": [
       {
