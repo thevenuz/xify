@@ -6,7 +6,7 @@
     "permissions": ["clipboardWrite", "clipboardRead", "tabs", "activeTab"],
     "content_scripts": [
       {
-        "matches": ["*://twitter.com/*"],
+        "matches": ["*://twitter.com/*","*://x.com/*"],
         "js": ["src/copy.js"]
       }
     ],
@@ -24,7 +24,7 @@
     },
     "externally_connectable":{
       "ids":["*"],
-      "matches":["*://twitter.com/*"]
+      "matches":["*://twitter.com/*","*://x.com/*"]
     },
     "icons":{
       "16":"assets/icon16.png",
