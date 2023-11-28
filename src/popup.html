@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xify popup</title>
+    <style>
+        input[type=checkbox]{
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 40px;
+            height: 20px;
+            background: grey;
+            display: block;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        label:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        input:checked + label {
+            background: #00b386;
+        }
+
+        input:checked + label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:active:after {
+            width: 20px;
+        }
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            height: 200px;
+            width:200px;
+            background-color: rgb(2, 13, 28);
+            font-family: 'Poppins', sans-serif;    
+            color: rgb(255, 255, 255);
+        }
+
+        
+        .title-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 4px 2px 4px 2px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 10px ;
+            border-bottom: #fff solid 2px;
+        }
+
+        .fxtwitter-toggle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            font-size: 1.5rem;
+            font-size: small;
+            background-color: rgb(255, 255, 255, 0.08);
+            padding: 2px 2px 2px 2px;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .xify-logo {
+            width: 32px ;
+            margin: 0px 6px 0px 0px ;
+            border-radius: 50%;
+        }
+
+        .xify-title {
+            width: 50%;
+            margin: 2px 2px 2px 2px;
+        }
+
+        .toggles{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content{
+         width: 100%;
+            height: 100%;
+        }
+
+        .fx-enable{
+            margin: 0px 10px 0px 0px;
+            font-size: small;
+            font-weight: 500;
+        }
+
+        .toggle-wrap{
+            display: flex;
+            flex-direction: column;
+            
+            border-left: 2px solid rgb(255, 255, 255, 0.08);
+            border-right: 2px solid rgb(255, 255, 255, 0.08);
+            border-bottom: 2px solid rgb(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+        .fx-description{
+            display: flex;
+            height:40px;
+            align-items: center;
+            font-size: 12px;
+            padding: 5px 15px 5px 15px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="content">
+        <div class="title-bar">
+            <img class="xify-logo" src="../assets/icon32.png" alt="xify logo" />
+            <p class="xify-title">xify</p>
+        </div>
+        <div class="center toggles">
+            <div class="toggle-wrap">
+                <div class="fxtwitter-toggle">
+                    <p class="fx-enable">Enable fxtwitter</p>
+                    <input type="checkbox" id="switch" />
+                    <label  for="switch">Toggle</label>
+                </div>
+                <div class="fx-description">
+                    <p>
+                    Uses <b>fxtwitter</b> links instead of <b>vxtwitter</b>
+                    </p>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+  </body>
+  <script src="popup.js"></script>
+</html>
