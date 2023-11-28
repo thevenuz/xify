@@ -3,7 +3,7 @@
     "name": "xify",
     "version": "1.0.1",
     "description": "A firefox addon that modifies twitter links to vxtwitter on shortcut Ctrl+Alt+K and copies to clipboard.",
-    "permissions":["clipboardWrite", "clipboardRead", "tabs"],
+    "permissions":["clipboardWrite", "clipboardRead", "tabs","storage"],
     "content_scripts": [
       {
         "matches": ["*://twitter.com/*","*://x.com/*"],
@@ -17,6 +17,15 @@
           "mac": "Command+Alt+K"
         },
         "description": "Copy modified link to clipboard."
+      }
+    },
+    "action": {
+      "default_popup": "src/popup.html",
+      "default_icon": {
+        "16": "assets/icon16.png",
+        "32": "assets/icon32.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
       }
     },
     "background": {
