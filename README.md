@@ -22,7 +22,7 @@ Coz the twitter embeds failed the tenth time this week and I'm too lazy to manua
 
 ### How to switch between vxtwitter and fxtwitter?
 
-By default the bot modifies to `vxtwitter` links. You can enable the option `Enable fxtwitter` from the extension popup to use `fxtwitter` links instead of `vxtwitter`.
+By default the extension uses `vxtwitter` links. You can enable the option `Enable fxtwitter` from the extension popup to use `fxtwitter` links instead of `vxtwitter`.
 
 ![fxtwitter popup](assets/popup.png)
 
