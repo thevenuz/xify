@@ -3,7 +3,7 @@
     "name": "xify",
     "version": "2.0.0",
     "description": "A chrome extension that modifies twitter links to vxtwitter/fxtwitter on shortcut Ctrl+Shift+K and copies to clipboard.",
-    "permissions": ["clipboardWrite", "clipboardRead", "tabs", "activeTab", "storage"],
+    "permissions": ["clipboardWrite", "tabs", "activeTab", "storage"],
     "content_scripts": [
       {
         "matches": ["*://twitter.com/*","*://x.com/*"],
