@@ -75,7 +75,7 @@
             border-bottom: #fff solid 2px;
         }
 
-        .fxtwitter-toggle{
+        .options-toggle{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,6 +101,7 @@
 
         .toggles{
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -110,7 +111,7 @@
             height: 100%;
         }
 
-        .fx-enable{
+        .toggle-enable{
             margin: 0px 10px 0px 0px;
             font-size: small;
             font-weight: 500;
@@ -119,19 +120,23 @@
         .toggle-wrap{
             display: flex;
             flex-direction: column;
-            
+            margin-bottom: 10px;
             border-left: 2px solid rgb(255, 255, 255, 0.08);
             border-right: 2px solid rgb(255, 255, 255, 0.08);
             border-bottom: 2px solid rgb(255, 255, 255, 0.08);
             border-radius: 10px;
         }
-        .fx-description{
+        .toggle-description{
             display: flex;
             height:40px;
             align-items: center;
             font-size: 12px;
             padding: 5px 15px 5px 15px;
             color: rgba(255, 255, 255, 0.5);
+        }
+
+        .oncopy-description{
+            height: 60px !important;
         }
 
     </style>
@@ -144,18 +149,29 @@
         </div>
         <div class="center toggles">
             <div class="toggle-wrap">
-                <div class="fxtwitter-toggle">
-                    <p class="fx-enable">Enable fxtwitter</p>
+                <div class="options-toggle">
+                    <p class="toggle-enable">Enable fxtwitter</p>
                     <input type="checkbox" id="switch" />
                     <label  for="switch">Toggle</label>
                 </div>
-                <div class="fx-description">
+                <div class="toggle-description">
                     <p>
                     Uses <b>fxtwitter</b> links instead of <b>vxtwitter</b>
                     </p>
                 </div>
             </div>
-            
+            <div class="toggle-wrap">
+                <div class="options-toggle">
+                    <p class="toggle-enable">Modify on copy</p>
+                    <input type="checkbox" id="oncopy-switch" />
+                    <label  for="oncopy-switch">On copy toggle</label>
+                </div>
+                <div class="toggle-description oncopy-description">
+                    <p>
+                    Modifies links directly on copy (Ctrl + C) instead of the custom command
+                    </p>
+                </div>
+            </div>
             
         </div>
     </div>
