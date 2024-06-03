@@ -22,7 +22,7 @@ document.addEventListener('copy', e => {
 });
 
 const updateLink = clipboardData => {
-  var modifiedLink = clipboardData.replace('twitter', 'vxtwitter');
+  var modifiedLink = clipboardData.replace(/twitter\.com|x\.com/g, 'vxtwitter.com');
 
   chrome.storage.sync.get('fxenabled', isFxEnabled => {
     if (
@@ -30,7 +30,7 @@ const updateLink = clipboardData => {
       isFxEnabled.fxenabled != undefined &&
       isFxEnabled.fxenabled
     ) {
-      modifiedLink = clipboardData.replace('twitter', 'fxtwitter');
+      modifiedLink = clipboardData.replace(/twitter\.com|x\.com/g, 'fxtwitter.com');
     }
 
     navigator.clipboard.writeText(modifiedLink).then(
