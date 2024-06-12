@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "name": "xify",
-    "version": "2.1.0",
-    "description": "A chrome extension that modifies twitter links to vxtwitter/fxtwitter on Copy/shortcut Ctrl+Shift+K and copies to clipboard.",
-    "permissions": ["clipboardWrite", "tabs", "activeTab", "storage"],
+    "version": "2.1.2",
+    "description": "A chrome extension that modifies twitter/x.com links to vxtwitter/fxtwitter on Copy/shortcut Ctrl+Shift+K and copies to clipboard.",
+    "permissions": ["clipboardWrite", "activeTab", "storage"],
     "content_scripts": [
       {
         "matches": ["*://twitter.com/*","*://x.com/*"],
