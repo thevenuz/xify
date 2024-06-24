@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "xify",
-    "version": "2.1.0",
-    "description": "A firefox addon that modifies twitter links to vxtwitter/fxtwitter on shortcut Ctrl+Alt+K and copies to clipboard.",
+    "version": "2.1.2",
+    "description": "A firefox addon that modifies twitter or x.com links to vxtwitter/fxtwitter on shortcut Ctrl+Alt+K and copies to clipboard.",
     "permissions":["clipboardWrite", "tabs","storage"],
     "content_scripts": [
       {
