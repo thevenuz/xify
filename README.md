@@ -17,7 +17,7 @@ Coz the twitter embeds failed the tenth time this week and I'm too lazy to manua
 ### On Firefox
 
 1. Install the extension from [here](https://addons.mozilla.org/en-US/firefox/addon/xify/).
-2. Go to any twitter.com link and use `Ctrl+Alt+K` (or `Ctrl+C` if you enable `modify on copy`) shortcut.
+2. Go to any x.com or twitter.com link and use `Ctrl+Alt+K` (or `Ctrl+C` if you enable `modify on copy`) shortcut.
 3. And that's it, the extension will automatically change the url to `vxtwiiter.com`/`fxtwiiter.com` link.
 
 ### How to switch between vxtwitter and fxtwitter?
