@@ -10,6 +10,19 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 document.addEventListener('copy', e => {
   currentLink = document.location.href;
 
+  /* When the user visits the bookmarks page, and uses copy link button on a post, 
+    extension gets the url of the bookmarks page isntead of the post.
+    This is a temprary fix to get the url of the post instead.*/
+
+  // TODO: Check more pages where this could be an issue.
+  if (currentLink.includes('bookmarks')) {
+    const postLink = e.target.innerHTML;
+    const urlRegex = /^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/.*)?$/g;
+    if (postLink.match(urlRegex)) {
+      currentLink = postLink;
+    }
+  }
+
   browser.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
     if (
       isOnCopyEnabled != null &&
