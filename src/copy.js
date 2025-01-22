@@ -13,14 +13,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 const FIX_TARGET = /twitter\.com|x\.com/g
 
 document.addEventListener('copy', e => {
-  currentLink = window.location.href
   target = window.getSelection().toString()
 
-  if (!currentLink) {
+  if (!target) {
     return;
   }
 
-  if (!currentLink.match(FIX_TARGET)) {
+  if (!target.match(FIX_TARGET)) {
     return;
   }
 
