@@ -7,20 +7,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+/**
+ * Regex to match twitter and x.com URLs.
+ */
+const FIX_TARGET = /twitter\.com|x\.com/g
+
 document.addEventListener('copy', e => {
-  currentLink = document.location.href;
+  target = window.getSelection().toString()
 
-  /* When the user visits the bookmarks page, and uses copy link button on a post, 
-    extension gets the url of the bookmarks page isntead of the post.
-    This is a temprary fix to get the url of the post instead.*/
+  if (!target) {
+    return;
+  }
 
-  // TODO: Check more pages where this could be an issue.
-  if (currentLink.includes('bookmarks')) {
-    const postLink = e.target.innerHTML;
-    const urlRegex = /^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/.*)?$/g;
-    if (postLink.match(urlRegex)) {
-      currentLink = postLink;
-    }
+  if (!target.match(FIX_TARGET)) {
+    return;
   }
 
   chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
@@ -29,14 +29,14 @@ document.addEventListener('copy', e => {
       isOnCopyEnabled.oncopyenabled != undefined &&
       isOnCopyEnabled.oncopyenabled
     ) {
-      updateLink(currentLink);
+      updateLink(target);
     }
   });
 });
 
 const updateLink = clipboardData => {
   var modifiedLink = clipboardData.replace(
-    /twitter\.com|x\.com/g,
+    FIX_TARGET,
     'vxtwitter.com'
   );
 
@@ -47,7 +47,7 @@ const updateLink = clipboardData => {
       isFxEnabled.fxenabled
     ) {
       modifiedLink = clipboardData.replace(
-        /twitter\.com|x\.com/g,
+        FIX_TARGET,
         'fxtwitter.com'
       );
     }
