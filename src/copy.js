@@ -13,25 +13,33 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 const FIX_TARGET = /twitter\.com|x\.com/g
 
 document.addEventListener('copy', e => {
+  // ctrl+c or cmd+c copy
+  target = document.location.href;
+  if (target.match(FIX_TARGET)) {
+    chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
+      if (
+        isOnCopyEnabled != null &&
+        isOnCopyEnabled.oncopyenabled != undefined &&
+        isOnCopyEnabled.oncopyenabled
+      ) {
+        updateLink(target);
+      }
+    });
+  }
+
+  // shortcut for copy
   target = window.getSelection().toString()
-
-  if (!target) {
-    return;
+  if (target.match(FIX_TARGET)) {
+    chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
+      if (
+        isOnCopyEnabled != null &&
+        isOnCopyEnabled.oncopyenabled != undefined &&
+        isOnCopyEnabled.oncopyenabled
+      ) {
+        updateLink(target);
+      }
+    });
   }
-
-  if (!target.match(FIX_TARGET)) {
-    return;
-  }
-
-  chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
-    if (
-      isOnCopyEnabled != null &&
-      isOnCopyEnabled.oncopyenabled != undefined &&
-      isOnCopyEnabled.oncopyenabled
-    ) {
-      updateLink(target);
-    }
-  });
 });
 
 const updateLink = clipboardData => {
