@@ -10,43 +10,30 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 /**
  * Regex to match twitter and x.com URLs.
  */
-const FIX_TARGET = /twitter\.com|x\.com/g
+const FIX_TARGET = /twitter\.com|x\.com/g;
 
 document.addEventListener('copy', e => {
-  // ctrl+c or cmd+c copy
-  target = document.location.href;
-  if (target.match(FIX_TARGET)) {
-    chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
-      if (
-        isOnCopyEnabled != null &&
-        isOnCopyEnabled.oncopyenabled != undefined &&
-        isOnCopyEnabled.oncopyenabled
-      ) {
-        updateLink(target);
-      }
-    });
-  }
+  chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
+    if (
+      isOnCopyEnabled != null &&
+      isOnCopyEnabled.oncopyenabled != undefined &&
+      isOnCopyEnabled.oncopyenabled
+    ) {
+      target = window.getSelection().toString();
 
-  // shortcut for copy
-  target = window.getSelection().toString()
-  if (target.match(FIX_TARGET)) {
-    chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
-      if (
-        isOnCopyEnabled != null &&
-        isOnCopyEnabled.oncopyenabled != undefined &&
-        isOnCopyEnabled.oncopyenabled
-      ) {
-        updateLink(target);
+      // If target is empty, try to get the URL of the current page.
+      if (!target) {
+        target = document.location.href;
+        if (target.match(FIX_TARGET)) {
+          updateLink(target);
+        }
       }
-    });
-  }
+    }
+  });
 });
 
 const updateLink = clipboardData => {
-  var modifiedLink = clipboardData.replace(
-    FIX_TARGET,
-    'vxtwitter.com'
-  );
+  var modifiedLink = clipboardData.replace(FIX_TARGET, 'vxtwitter.com');
 
   chrome.storage.sync.get('fxenabled', isFxEnabled => {
     if (
@@ -54,10 +41,7 @@ const updateLink = clipboardData => {
       isFxEnabled.fxenabled != undefined &&
       isFxEnabled.fxenabled
     ) {
-      modifiedLink = clipboardData.replace(
-        FIX_TARGET,
-        'fxtwitter.com'
-      );
+      modifiedLink = clipboardData.replace(FIX_TARGET, 'fxtwitter.com');
     }
 
     navigator.clipboard.writeText(modifiedLink).then(
