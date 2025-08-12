@@ -10,30 +10,35 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 /**
  * Regex to match twitter and x.com URLs.
  */
-const FIX_TARGET = /twitter\.com|x\.com/g;
+const FIX_TARGET = /twitter\.com|x\.com/g
 
 document.addEventListener('copy', e => {
+  target = window.getSelection().toString()
+
+  if (!target) {
+    return;
+  }
+
+  if (!target.match(FIX_TARGET)) {
+    return;
+  }
+
   chrome.storage.sync.get('oncopyenabled', isOnCopyEnabled => {
     if (
       isOnCopyEnabled != null &&
       isOnCopyEnabled.oncopyenabled != undefined &&
       isOnCopyEnabled.oncopyenabled
     ) {
-      target = window.getSelection().toString();
-
-      // If target is empty, try to get the URL of the current page.
-      if (!target) {
-        target = document.location.href;
-        if (target.match(FIX_TARGET)) {
-          updateLink(target);
-        }
-      }
+      updateLink(target);
     }
   });
 });
 
 const updateLink = clipboardData => {
-  var modifiedLink = clipboardData.replace(FIX_TARGET, 'vxtwitter.com');
+  var modifiedLink = clipboardData.replace(
+    FIX_TARGET,
+    'vxtwitter.com'
+  );
 
   chrome.storage.sync.get('fxenabled', isFxEnabled => {
     if (
@@ -41,7 +46,10 @@ const updateLink = clipboardData => {
       isFxEnabled.fxenabled != undefined &&
       isFxEnabled.fxenabled
     ) {
-      modifiedLink = clipboardData.replace(FIX_TARGET, 'fxtwitter.com');
+      modifiedLink = clipboardData.replace(
+        FIX_TARGET,
+        'fxtwitter.com'
+      );
     }
 
     navigator.clipboard.writeText(modifiedLink).then(
